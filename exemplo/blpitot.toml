@@ -8,6 +8,10 @@ scale = 0.005
 href = 700
 # Unidade usada para especificar o modelo
 unit = "mm"
+# Altura da base (zero) no modelo para que haja correspondência
+# com o desenho do edifício ou modelo FEM do edifício
+alt = 0
+
 # Eixo que será medido
 # Caso seja um array, teremos um grid. A ordem especificará qual direção
 # é percorrida inicialmente. Veja outro exemplo
@@ -19,12 +23,31 @@ axes = "z"
 rho = 1.08
 
 
-# Parâmetros usados para gerar o perfil de velocidades
-# Altura da rugosidade e destribuição
-roughness = {distribution="diamond", spacing = [300,300], length=20}
-# Método usado para gerar o perfil de velocidades
-method = "Counihan"
 
+# Configuração do túnel de vento
+# coisas como altura e espaçamento da rugosidade, geradores de vórtice
+# e comprimento do piso rugoso.
+[tunnel]
+# Altura dos elementos de rugosidade (mm)
+H = 80
+# Comprimento do piso rugos (m)
+L = 20
+
+# Padrão geométrico de como os elementos rugosos estão distribuídos
+distr = "diamante"
+
+# Como o perfil de velocidade é gerado
+method = "Counihan, 1.2 m"
+
+
+# Configuração da plotagem
+# Isso vai mudar com o tempo.
+[plot]
+# Plotar a altura da rugosidade?
+rough = true
+
+# Plotar a altura de referência
+ref = true
 
 
 

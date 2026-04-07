@@ -1,0 +1,115 @@
+# Arquivo de configuração da medição de camada limite com o Pitot
+
+# Informações sobre a medição
+[profile]
+# Fator de escala do modelo
+scale = 0.005
+# Altura de referência do modelo
+href = 700
+# Unidade usada para especificar o modelo
+unit = "mm"
+# Eixo que será medido
+# Caso seja um array, teremos um grid. A ordem especificará qual direção
+# é percorrida inicialmente. Veja outro exemplo
+axes = "z"
+
+# Massa específica do ar. Pode ser um valor fixo (caso seja numérico) ou um
+# outro campo, com nome
+# Neste caso, usamos um valor fixo
+rho = 1.08
+
+
+# Parâmetros usados para gerar o perfil de velocidades
+# Altura da rugosidade e destribuição
+roughness = {distribution="diamond", spacing = [300,300], length=20}
+# Método usado para gerar o perfil de velocidades
+method = "Counihan"
+
+
+
+
+# O que vamos calcular com este perfil
+[calc]
+# Pitot usado para medir o perfil
+profile = "pitot"
+# Pitot usado para medir pressão dinâmica de referência
+ref = "ref"
+
+# Corrigir os dados com a pressão dinâmica de referência?
+refcorrection = true
+
+# Medir camada logarítmica/z0?
+log = true
+
+# Medir o perfil potencial?
+power = true
+
+# Em geral não dá para medir o perfil com apenas uma única medição.
+# Então temos que medir por trechos. Cada trecho é especificado em uma única
+# `[[section]]`
+[[section]]
+# Nome/sufixo para a seção. Pode não ser nada se for uma única seção.
+name = "-lo"
+# Referência. O atuador será programado na posição `z - ref`
+# Caso seja um grid, isto deve ser um array com a referência de cada eixo na ordem
+# do campo `axes` acima
+ref = 0
+# Cada eixo deve ser especificado a seguir com o nome correspondendo a um dos campos
+# de `axes` axima
+z = [10, 20, 30, 40, 50, 60, 80, 100, 120, 140, 160, 180, 200, 240, 280, 320, 360, 400, 440, 480, 520, 560]
+
+[[section]]
+name = "-hi"
+ref = 0
+z = [600, 640, 680, 720, 760, 800, 850, 900, 950, 1000, 1050, 1100, 1150]
+
+
+
+
+
+# Especificação dos tubos de Pitot utilizados
+# Estamos usando dois tubos de Pitot, um para medir o perfil e outro de referência
+# Primeiro o tubo de Pitot para medir o Perfil
+[[pitot]]
+name = "pitot" # Nome do dispositivo 
+type = "Prandtl" # Tipo de sensor
+Cd = 0.997 # Coeficiente de descarga do sensor ou outros parâmetros do Pitot
+channels = [13,14]
+
+[[pitot]]
+name = "ref"
+type = "Prandtl"
+Cd = 0.997
+channels = [15,16]
+
+
+# Dispositivo de medição de pressão
+[device]
+type = "DSA3217"
+name = "pitot"
+ip = "191.30.80.131"
+channels = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+
+# Configuração do dispositivo para a medição do perfil
+[device.config]
+AVG=200
+PERIOD=500
+FPS=20
+
+# Configuração do dispositivo para testes (sem medição formal)
+[device.testconfig]
+AVG=200
+PERIOD=500
+FPS=4
+
+
+# Atuador que vai movimentar o tubo de Pitot
+[actuator]
+type = "RoboSimples"
+name = "Robo"
+ip = "192.168.0.50"
+port = 9543
+axes = ["z"]
+
+
+

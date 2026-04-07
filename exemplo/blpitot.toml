@@ -29,7 +29,9 @@ method = "Counihan"
 
 
 # O que vamos calcular com este perfil
-[calc]
+# Caso tenha mais de um elemento no array `[[calc]]',
+# podemos calcular as coisas para cada perfil
+[[calc]]
 # Pitot usado para medir o perfil
 profile = "pitot"
 # Pitot usado para medir pressão dinâmica de referência
@@ -44,11 +46,19 @@ log = true
 # Medir o perfil potencial?
 power = true
 
+# Índice das seções usadas para calcular as característics do perfil
+# Se não for especificado, será calculado para cada 
+cases = [1,2]
+
+
+
 # Em geral não dá para medir o perfil com apenas uma única medição.
 # Então temos que medir por trechos. Cada trecho é especificado em uma única
 # `[[section]]`
 [[section]]
 # Nome/sufixo para a seção. Pode não ser nada se for uma única seção.
+# Se `name` não for definido uma seção, `name = ""`. Caso, tenha mais de uma
+# seção e `name` não seja definido, `-1`, `-2` será usado como name.
 name = "-lo"
 # Referência. O atuador será programado na posição `z - ref`
 # Caso seja um grid, isto deve ser um array com a referência de cada eixo na ordem

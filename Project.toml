@@ -1,9 +1,35 @@
 name = "BLPitot"
 uuid = "6e29ab19-5a9e-42fe-a1fb-4910e9c40779"
-authors = ["= <pjabardo@ipt.br> and contributors"]
 version = "1.0.0-DEV"
+authors = ["= <pjabardo@ipt.br> and contributors"]
+
+[deps]
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+DAQCore = "7b03aed3-9854-4651-ba28-76b88bef8818"
+DAQHDF5 = "3679571a-6675-409e-9618-c02a2349284e"
+DAQSimpleScripts = "39ba7910-02ad-4040-a45c-8568ce053524"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+HDF5 = "f67ccb44-e63f-5c2f-98bd-6dc0ccc4ba2f"
+IPTVento = "eba6575b-a069-41f6-8973-4335d659c72d"
+NativeFileDialog = "e1fe445b-aa65-4df4-81c1-2041507f0fd4"
+PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
+Psychro = "9516f557-4a54-5a79-b954-c272e753c77a"
+Scanivalve = "4fb5c015-4516-465f-8a65-a29a7c83b06b"
+Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
 
 [compat]
+CairoMakie = "0.15.9"
+DAQCore = "0.1.0"
+DAQHDF5 = "0.1.0"
+DAQSimpleScripts = "0.1.0"
+GLMakie = "0.13.9"
+HDF5 = "0.17.3"
+IPTVento = "0.1.0"
+NativeFileDialog = "0.2.1"
+PlutoUI = "0.7.80"
+Psychro = "0.3.0"
+Scanivalve = "0.1.0"
+Unitful = "1.28.0"
 julia = "1.10"
 
 [extras]
